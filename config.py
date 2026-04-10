@@ -34,3 +34,4 @@ class Config(object):
 
     SCOPE = ["User.Read"]
     SESSION_TYPE = "filesystem"
+    
