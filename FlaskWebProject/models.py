@@ -10,7 +10,7 @@ from flask import flash
 # Azure Blob configuration
 blob_container = app.config['BLOB_CONTAINER']
 blob_service_client = BlobServiceClient.from_connection_string(
-    app.config['BLOB_CONNECTION_STRING']
+    os.environ['BLOB_CONNECTION_STRING']
 )
 container_client = blob_service_client.get_container_client(blob_container)
 
