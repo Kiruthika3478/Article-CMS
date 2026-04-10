@@ -6,14 +6,11 @@ from azure.storage.blob import BlobServiceClient
 import string, random
 from werkzeug.utils import secure_filename
 from flask import flash
+import os
 
 # Azure Blob configuration
 blob_container = app.config['BLOB_CONTAINER']
-blob_service_client = BlobServiceClient.from_connection_string(
-    app.config['BLOB_CONNECTION_STRING']
-)
-container_client = blob_service_client.get_container_client(blob_container)
-
+blob_service = BlockBlobService(account_name=app.config['BLOB_ACCOUNT'], account_key=app.config['BLOB_STORAGE_KEY'])
 
 def id_generator(size=32, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
