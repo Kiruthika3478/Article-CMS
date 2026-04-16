@@ -3,7 +3,8 @@ Routes and views for the flask application.
 """
 
 from flask import render_template, flash, redirect, request, session, url_for
-from werkzeug.urls import url_parse
+from urllib.parse import urlparse
+
 
 from config import Config
 from FlaskWebProject import app, db
@@ -112,7 +113,7 @@ def login():
         flash(f"Welcome {user.username} !")
         next_page = request.args.get("next")
 
-        if not next_page or url_parse(next_page).netloc != "":
+        if not next_page or urlparse(next_page).netloc != '':
             next_page = url_for("home")
 
         return redirect(next_page)
